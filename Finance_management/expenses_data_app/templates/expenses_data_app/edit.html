@@ -1,0 +1,29 @@
+{% extends 'login_app/home_page.html' %}
+
+
+{% block content %}
+<a href="{%url 'home' %}">Home</a>
+<form action="{% url 'edit' %}" method="post">
+    {% csrf_token %}
+
+    <div class="card m-auto form-control" style="width:20rem" >
+        <label>Name</label>
+     <input type="text" name="{{retrived_data.name}}" placeholder="{{retrived_data.name}}"> <br>
+        <label>Category</label>
+        <select name="category" id="category">
+        {% for i in category %}
+  <option value="{{i.id}}">{{i.name}}</option>
+    {% endfor %}
+</select>
+        <input type="text" name="{{retrived_data.category}}" placeholder="{{retrived_data.category}}"> <br>
+        <input type="text" name="{{retrived_data.description}}" placeholder="{{retrived_data.description}}"> <br>
+        <input type="text" name="{{retrived_data.amount}}" placeholder="{{retrived_data.amount}}"> <br>
+    <input type="submit" value="edit">
+
+    </div>
+
+
+</form>
+
+
+{% endblock %}

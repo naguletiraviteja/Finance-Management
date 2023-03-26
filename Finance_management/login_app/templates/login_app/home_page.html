@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+</head>
+<body>
+{% block content %}
+{% if not request.user.is_authenticated %}
+<button><a href="{% url 'login'%}">Login</a></button>
+
+{% else %}
+<button><a href="{% url 'logout' %}">logout</a></button>
+<h3>My Expense Manager</h3>
+<a href="{% url 'createexpense' %}">Create Expense</a>
+<table>
+    <thead>
+    <tr><th>|Name|</th>
+        <th>|Category|</th>
+        <th>|Date of expense|</th>
+        <th>|Amount|</th>
+        <th>|Updated at|</th>
+        <th>|created by|</th>
+<!--        <th></th>-->
+<!--        <th></th>-->
+    </tr>
+    </thead>
+        {% for i in data %}
+        <tr><th>|{{i.name}}|</th>
+        <th>|{{i.category.name}}|</th>
+        <th>|{{i.date_of_expense}}|</th>
+        <th>|{{i.amount}}|</th>
+        <th>|Updated at|</th>
+        <th>|{{i.expense_user}}|</th>
+    </tr>
+    <br>
+        {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}
+
+</body>
+</html>

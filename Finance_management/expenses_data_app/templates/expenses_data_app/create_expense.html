@@ -1,0 +1,41 @@
+{% extends 'login_app/home_page.html' %}
+
+
+{% block content %}
+
+<a href="{%url 'home' %}">Home</a>
+
+<form action="{% url 'createexpense' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group ">
+        <label>Name</label>
+        {{UserForm.name}}
+    </div> <!-- form-group end.// -->
+    <h3>Category</h3>
+    <select name="category" id="category">
+        {% for i in category %}
+  <option value="{{i.id}}">{{i.name}}</option>
+    {% endfor %}
+</select>
+     <div class="form-group ">
+        <label>Description</label> <br>
+        {{UserForm.description}}
+    </div>
+    <div class="form-group ">
+        <label>Amount</label>
+        {{UserForm.amount}}
+    </div>
+    <button type="submit">create expense</button>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
